@@ -22,8 +22,8 @@
 const { gets, print } = require('./funcoes-auxiliares-ex3');
 
 // variáveis de entrada
-const valorSalarioBruto = gets();
-const valorAdicionalDosBeneficios = gets();
+const valorSalario = gets();
+const valorBeneficios = gets();
 
 //  calculo de Porcentagem
 function calcularPorcentagem(valor,percentual ){
@@ -32,7 +32,7 @@ function calcularPorcentagem(valor,percentual ){
 
 
 //  pegarPercentualImpostoComBaseNoSalario
-function pegarPercentualImpostoComBaseNoSalario(salario){
+function pegarAliquotaComBaseNoSalario(salario){
     
     if (salario >= 0.00 && salario <= 1100.00) {
         //return salario * (percentual / 5)
@@ -47,6 +47,12 @@ function pegarPercentualImpostoComBaseNoSalario(salario){
 }
 
 //  valorATransferir
-const valorATransferir = valorSalarioBruto - (calcularPorcentagem (valorSalarioBruto, pegarPercentualImpostoComBaseNoSalario(valorSalarioBruto))) + valorAdicionalDosBeneficios;
+const aliquotaImposto = pegarAliquotaComBaseNoSalario(valorSalario);
+
+const valorImposto =  calcularPorcentagem (valorSalario, aliquotaImposto );
+
+
+
+const valorATransferir = valorSalario - valorImposto + valorBeneficios;
 
 print(valorATransferir);
