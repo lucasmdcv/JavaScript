@@ -18,15 +18,24 @@
 const { gets, print } = require('./funcoes-auxiliares-ex2');
 
 const n = gets();
-let maiorNumeroPar = 0;
+let maiorNumeroPar = null;   //quando não temos um valor ele é nulo, porque não existe.
+let menorNumeroImpar = null;
 
 for (let i = 0; i < n; i++) {
     const numero = gets();
+
     if (numero % 2 === 0) {
-       if( numero > maiorNumeroPar){
-        maiorNumeroPar = numero;
+        //   -->  || ou     maior número par igual nulo -->ou<-- numero maior que par
+        if(maiorNumeroPar === null || numero > maiorNumeroPar){
+            maiorNumeroPar = numero;
        }
+    }else  {
+        if(menorNumeroImpar === null || numero < menorNumeroImpar){
+        menorNumeroImpar = numero;
+       } 
     }
 }
 
-print(maiorNumeroPar)
+
+print('Maior número par: ' + maiorNumeroPar);
+print('Menor número ímpar: ' + menorNumeroImpar);
